@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+input[type='checkbox'] {
+  margin: 3px auto;
+}
+
 label {
   white-space: nowrap;
 }
