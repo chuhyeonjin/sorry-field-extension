@@ -2,15 +2,16 @@ const logoutBtn = document.getElementById("logoutBtn");
 const autoLoginCheckBox = document.getElementById("autoLoginCheckBox");
 
 const sorryFieldUrl = "https://sorry.daldalso.com";
+const sessionCookieName = "sf.id";
 
 logoutBtn.addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    const tabUrl = tabs[0].url;
+    const tab = tabs[0];
     const isSorryField = tabUrl.startsWith(sorryFieldUrl);
 
     if (isSorryField) {
-      chrome.cookies.remove({ name: "sf.id", url: "https://sorry.daldalso.com" }, () => { });
-      chrome.tabs.update(tabs[0].id, { url: tabUrl });
+      chrome.cookies.remove({ name: sessionCookieName, url: sorryFieldUrl }, () => { });
+      chrome.tabs.update(tabs[0].id, { url: tab.url });
     };
   });
 });
