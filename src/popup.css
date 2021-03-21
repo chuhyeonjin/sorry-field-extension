@@ -4,10 +4,35 @@
   justify-content: center;
 }
 
-input[type='checkbox'] {
+.autoLogin {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 7px 0;
+}
+
+.autologin input[type='checkbox'] {
   margin: 3px auto;
+}
+
+.autoLogin label {
+  margin: 2px 0;
+}
+
+#logoutBtn {
+  margin: 3px 0;
 }
 
 label {
   white-space: nowrap;
+  text-align: center;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1 {
+  font-size: 1.5em;
 }
