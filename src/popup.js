@@ -4,14 +4,16 @@ const autoLoginCheckBox = document.getElementById("autoLoginCheckBox");
 const sorryFieldUrl = "https://sorry.daldalso.com";
 const sessionCookieName = "sf.id";
 
+import './popup.css';
+
 logoutBtn.addEventListener('click', () => {
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
     const tab = tabs[0];
-    const isSorryField = tabUrl.startsWith(sorryFieldUrl);
+    const isSorryField = tab.startsWith(sorryFieldUrl);
 
     if (isSorryField) {
       chrome.cookies.remove({ name: sessionCookieName, url: sorryFieldUrl }, () => { });
-      chrome.tabs.update(tabs[0].id, { url: tab.url });
+      chrome.tabs.update(tab.id, { url: tab.url });
     };
   });
 });
@@ -22,7 +24,8 @@ autoLoginCheckBox.addEventListener('change', (event) => {
   chrome.storage.local.set({ autoLoginEnable: checked }, () => { });
 
   chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-    chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+    const tab = tabs[0];
+    chrome.tabs.update(tab.id, { url: tab.url });
   });
 })
 

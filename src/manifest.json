@@ -1,17 +1,17 @@
 {
   "manifest_version": 3,
   "name": "SorryField Extension",
-  "version": "1.0.0",
+  "version": "${version}",
   "author": "Chu Hyeon-jin",
   "action": {
-    "default_popup": "src/popup.html"
+    "default_popup": "popup.html"
   },
   "permissions": ["tabs", "cookies", "storage"],
   "host_permissions": ["https://sorry.daldalso.com/*"],
   "content_scripts": [
     {
       "matches": ["https://sorry.daldalso.com/*"],
-      "js": ["src/autoLogin.js"]
+      "js": ["autoLogin.js"]
     }
   ],
   "icons": {
