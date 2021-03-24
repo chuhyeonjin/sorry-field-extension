@@ -1,14 +1,17 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+//@ts-ignore
 import { default as CopyWebpackPlugin } from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+//@ts-ignore
 import { default as MiniCssExtractPlugin, loader as MiniCssExtractLoader } from 'mini-css-extract-plugin';
+//@ts-ignore
 import { default as CssMinimizerWebpackPlugin } from 'css-minimizer-webpack-plugin';
 
 import * as pkg from './package.json';
 
-function manifestTransformer(manifestBuffer, path): Buffer {
+function manifestTransformer(manifestBuffer: Buffer, path: String): Buffer {
   const manifestString = manifestBuffer.toString().replace(/\$\{version\}/g, pkg.version);
   return Buffer.from(manifestString);
 }
@@ -36,8 +39,8 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
-    extensions: ['ts', 'js']
-  }
+    extensions: ['ts', 'js'],
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({

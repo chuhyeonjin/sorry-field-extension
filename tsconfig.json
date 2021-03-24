@@ -6,7 +6,6 @@
     "lib": ["ES6", "DOM"],
     "target": "ES6",
     "moduleResolution": "node",
-    "types": ["chrome"],
     "noImplicitAny": true
   },
   "exclude": ["node_modules", "**/*.js"]
