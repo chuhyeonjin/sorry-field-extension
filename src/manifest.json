@@ -3,6 +3,7 @@
   "name": "SorryField Extension",
   "version": "${version}",
   "author": "Chu Hyeon-jin",
+  "description": "Extension for SorryField",
   "action": {
     "default_popup": "popup.html"
   },
