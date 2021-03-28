@@ -20,7 +20,7 @@ const config: webpack.Configuration = {
   mode: 'production',
   entry: {
     popup: './src/popup.js',
-    autoLogin: './src/autoLogin.js',
+    autoLogin: './src/autoLogin.ts',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -39,7 +39,7 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
-    extensions: ['ts', 'js'],
+    extensions: ['.ts', '.js'],
   },
   plugins: [
     new CleanWebpackPlugin(),
