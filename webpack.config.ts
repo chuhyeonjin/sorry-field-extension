@@ -19,7 +19,7 @@ function manifestTransformer(manifestBuffer: Buffer, path: String): Buffer {
 const config: webpack.Configuration = {
   mode: 'production',
   entry: {
-    popup: './src/popup.js',
+    popup: './src/popup.ts',
     autoLogin: './src/autoLogin.ts',
   },
   output: {

@@ -4,9 +4,13 @@ export function getAutoLoginEnable(): Promise<boolean> {
       const isUndefined = autoLoginEnable === undefined;
       autoLoginEnable = isUndefined ? true : autoLoginEnable;
       if (isUndefined) {
-        chrome.storage.local.set({ autoLoginEnable: true }, () => {});
+        setAutoLoginEnable(true);
       }
       resolve(autoLoginEnable);
     });
   });
+}
+
+export function setAutoLoginEnable(autoLoginEnable: boolean) {
+  chrome.storage.local.set({ autoLoginEnable: autoLoginEnable }, () => {});
 }
