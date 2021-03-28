@@ -8,6 +8,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { default as MiniCssExtractPlugin, loader as MiniCssExtractLoader } from 'mini-css-extract-plugin';
 //@ts-ignore
 import { default as CssMinimizerWebpackPlugin } from 'css-minimizer-webpack-plugin';
+//@ts-ignore
+import { default as TerserWebpackPlugin } from 'terser-webpack-plugin';
 
 import * as pkg from './package.json';
 
@@ -68,7 +70,12 @@ const config: webpack.Configuration = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new CssMinimizerWebpackPlugin()],
+    minimizer: [
+      new CssMinimizerWebpackPlugin(),
+      new TerserWebpackPlugin({
+        parallel: true,
+      }),
+    ],
   },
 };
 
