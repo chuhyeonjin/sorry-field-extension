@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
+import { merge } from 'webpack-merge';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 //@ts-ignore
 import { default as CopyWebpackPlugin } from 'copy-webpack-plugin';
@@ -10,6 +11,8 @@ import { default as MiniCssExtractPlugin, loader as MiniCssExtractLoader } from 
 import { default as CssMinimizerWebpackPlugin } from 'css-minimizer-webpack-plugin';
 //@ts-ignore
 import { default as TerserWebpackPlugin } from 'terser-webpack-plugin';
+//@ts-ignore
+import { default as ZipWebpackPlugin } from 'zip-webpack-plugin';
 
 import * as pkg from './package.json';
 
@@ -18,14 +21,10 @@ function manifestTransformer(manifestBuffer: Buffer, path: String): Buffer {
   return Buffer.from(manifestString);
 }
 
-const config: webpack.Configuration = {
-  mode: 'production',
+const commonConfig: webpack.Configuration = {
   entry: {
     popup: './src/popup.ts',
-    autoLogin: './src/autoLogin.ts',
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
+    contentScript: './src/contentScript.ts',
   },
   module: {
     rules: [
@@ -64,10 +63,17 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       filename: 'popup.html',
       template: './src/popup.html',
-      excludeChunks: ['autoLogin'],
+      excludeChunks: ['contentScript'],
     }),
     new MiniCssExtractPlugin(),
   ],
+};
+
+const productionConfig: webpack.Configuration = {
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+  },
   optimization: {
     minimize: true,
     minimizer: [
@@ -77,6 +83,33 @@ const config: webpack.Configuration = {
       }),
     ],
   },
+  plugins: [
+    new ZipWebpackPlugin({
+      filename: 'sorryfield-extension.zip',
+    }),
+  ],
 };
 
-export default config;
+const developmentConfig: webpack.Configuration = {
+  mode: 'development',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+  },
+  optimization: {
+    minimize: false,
+  },
+};
+
+export default function (env: any, argv: any) {
+  switch (argv.mode) {
+    case 'development':
+      return merge(commonConfig, developmentConfig);
+      break;
+    case 'production':
+      return merge(commonConfig, productionConfig);
+      break;
+    default:
+      throw '지원되는 타입: development | production';
+      break;
+  }
+}
