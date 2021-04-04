@@ -1,5 +1,6 @@
 import * as configManager from './configManager';
 
+// Auto login
 configManager.getAutoLoginEnable().then((autoLoginEnable) => {
   if (autoLoginEnable) {
     const accountElement = document.querySelector('#stage > header > div');

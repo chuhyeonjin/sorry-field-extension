@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["https://sorry.daldalso.com/*"],
-      "js": ["autoLogin.js"]
+      "js": ["contentScript.js"]
     }
   ],
   "icons": {
