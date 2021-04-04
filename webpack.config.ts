@@ -95,6 +95,7 @@ const developmentConfig: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, 'build'),
   },
+  devtool: 'inline-source-map',
   optimization: {
     minimize: false,
   },

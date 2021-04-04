@@ -6,7 +6,8 @@
     "lib": ["ES6", "DOM"],
     "target": "ES6",
     "moduleResolution": "node",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "sourceMap": true
   },
   "exclude": ["node_modules", "**/*.js"]
 }
