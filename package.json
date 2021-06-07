@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode development",
+    "build:watch": "yarn build -w",
     "dist": "webpack --mode production"
   },
   "devDependencies": {
