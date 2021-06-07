@@ -1,4 +1,5 @@
 import * as configManager from './configManager';
+import { sorryFieldLoginUrl } from './const';
 
 // Auto login
 configManager.getAutoLoginEnable().then((autoLoginEnable) => {
@@ -7,7 +8,7 @@ configManager.getAutoLoginEnable().then((autoLoginEnable) => {
     const isLogin = accountElement !== null;
 
     if (!isLogin) {
-      location.href = 'https://sorry.daldalso.com/login';
+      location.href = sorryFieldLoginUrl;
     }
   }
 });

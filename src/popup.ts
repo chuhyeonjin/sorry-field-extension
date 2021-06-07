@@ -1,10 +1,10 @@
 import * as tabManager from './tabManager';
 import * as configManager from './configManager';
+import { sorryFieldUrl } from './const';
 
 const logoutBtn = document.getElementById('logoutBtn');
 const autoLoginCheckBox = <HTMLInputElement>document.getElementById('autoLoginCheckBox');
 
-const sorryFieldUrl = 'https://sorry.daldalso.com';
 const sessionCookieName = 'sf.id';
 
 import './popup.css';

@@ -8,10 +8,10 @@
     "default_popup": "popup.html"
   },
   "permissions": ["tabs", "cookies", "storage"],
-  "host_permissions": ["https://sorry.daldalso.com/*"],
+  "host_permissions": ["https://sorry.daldal.so/*"],
   "content_scripts": [
     {
-      "matches": ["https://sorry.daldalso.com/*"],
+      "matches": ["https://sorry.daldal.so/*"],
       "js": ["contentScript.js"]
     }
   ],
