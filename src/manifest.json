@@ -11,7 +11,7 @@
   "host_permissions": ["https://sorry.daldal.so/*"],
   "content_scripts": [
     {
-      "matches": ["https://sorry.daldal.so/*"],
+      "matches": ["https://sorry.daldal.so/java/*", "https://sorry.daldal.so/"],
       "js": ["contentScript.js"]
     }
   ],
