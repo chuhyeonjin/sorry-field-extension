@@ -1,38 +1,34 @@
-.container {
+/* header */
+
+header h1 {
+  font-size: 1.5em;
+  margin: 0.2em 0;
+}
+
+/* setting */
+
+.setting-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.autoLogin {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 7px 0;
-}
-
-.autologin input[type='checkbox'] {
-  margin: 3px auto;
-}
-
-.autoLogin label {
-  margin: 2px 0;
-}
-
-#logoutBtn {
-  margin: 3px 0;
-}
-
-label {
+.item label {
   white-space: nowrap;
   text-align: center;
 }
 
-body {
-  font-family: sans-serif;
+.item {
+  margin: 0.8em 0 0;
 }
 
-h1 {
-  font-size: 1.5em;
+.item input[type='checkbox'] {
+  margin: 0;
+}
+
+div.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

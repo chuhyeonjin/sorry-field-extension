@@ -8,6 +8,7 @@ const autoLoginCheckBox = <HTMLInputElement>document.getElementById('autoLoginCh
 const sessionCookieName = 'sf.id';
 
 import './popup.css';
+import { getCurrentTab, reloadTab } from './tabManager';
 
 logoutBtn.addEventListener('click', () => {
   tabManager.getCurrentTab().then((currentTab) => {
@@ -15,20 +16,22 @@ logoutBtn.addEventListener('click', () => {
 
     if (isSorryField) {
       chrome.cookies.remove({ name: sessionCookieName, url: sorryFieldUrl }, () => {});
-      chrome.tabs.reload(() => {});
+      reloadTab();
     }
   });
 });
 
-autoLoginCheckBox.addEventListener('change', (event) => {
+autoLoginCheckBox.addEventListener('change', async (event) => {
   const checkBox = <HTMLInputElement>event.target;
   const checked = checkBox.checked;
 
-  configManager.setAutoLoginEnable(checked);
+  configManager.setConfig('autoLoginEnable', checked);
 
-  chrome.tabs.reload(() => {});
+  const currentTab = await getCurrentTab();
+
+  if (currentTab.url.startsWith(sorryFieldUrl)) reloadTab();
 });
 
-configManager.getAutoLoginEnable().then((autoLoginEnable) => {
+configManager.getConfig('autoLoginEnable').then((autoLoginEnable) => {
   autoLoginCheckBox.checked = autoLoginEnable;
 });
