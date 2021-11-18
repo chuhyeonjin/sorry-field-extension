@@ -16,7 +16,7 @@ import { default as ZipWebpackPlugin } from 'zip-webpack-plugin';
 
 import * as pkg from './package.json';
 
-function manifestTransformer(manifestBuffer: Buffer, path: String): Buffer {
+function manifestTransformer(manifestBuffer: Buffer): Buffer {
   const manifestString = manifestBuffer.toString().replace(/\$\{version\}/g, pkg.version);
   return Buffer.from(manifestString);
 }
@@ -101,16 +101,13 @@ const developmentConfig: webpack.Configuration = {
   },
 };
 
-export default function (env: any, argv: any) {
+export default function (_: any, argv: any) {
   switch (argv.mode) {
     case 'development':
       return merge(commonConfig, developmentConfig);
-      break;
     case 'production':
       return merge(commonConfig, productionConfig);
-      break;
     default:
       throw '지원되는 타입: development | production';
-      break;
   }
 }
