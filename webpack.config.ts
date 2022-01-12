@@ -26,11 +26,13 @@ const commonConfig: webpack.Configuration = {
     rules: [
       {
         test: /\.css$/i,
+        include: path.resolve(__dirname, 'src'),
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.ts$/i,
         use: 'ts-loader',
+        include: path.resolve(__dirname, 'src'),
         exclude: '/node_modules/',
       },
     ],
@@ -81,7 +83,7 @@ const productionConfig: webpack.Configuration = {
   },
   plugins: [
     new ZipWebpackPlugin({
-      filename: 'sorryfield-extension.zip',
+      filename: `sorryfield-extension-${pkg.version}.zip`,
     }),
   ],
 };
