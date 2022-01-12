@@ -2,15 +2,11 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import { merge } from 'webpack-merge';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-//@ts-ignore
-import { default as CopyWebpackPlugin } from 'copy-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-//@ts-ignore
-import { default as MiniCssExtractPlugin, loader as MiniCssExtractLoader } from 'mini-css-extract-plugin';
-//@ts-ignore
-import { default as CssMinimizerWebpackPlugin } from 'css-minimizer-webpack-plugin';
-//@ts-ignore
-import { default as TerserWebpackPlugin } from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CssMinimizerWebpackPlugin from 'css-minimizer-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 //@ts-ignore
 import { default as ZipWebpackPlugin } from 'zip-webpack-plugin';
 
@@ -30,7 +26,7 @@ const commonConfig: webpack.Configuration = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractLoader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.ts$/i,
@@ -78,7 +74,7 @@ const productionConfig: webpack.Configuration = {
     minimize: true,
     minimizer: [
       new CssMinimizerWebpackPlugin(),
-      new TerserWebpackPlugin({
+      new TerserPlugin({
         parallel: true,
       }),
     ],
