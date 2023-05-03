@@ -1,7 +1,7 @@
 {
   "name": "sorry-field-extension",
   "author": "Chu Hyeon-jin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "build:popup": "vite build --config ./vite.config.popup.ts",
