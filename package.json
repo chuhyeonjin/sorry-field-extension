@@ -4,29 +4,23 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "build": "webpack --mode development",
-    "build:watch": "yarn build -w",
-    "dist": "webpack --mode production"
+    "build:popup": "vite build --config ./vite.config.popup.ts",
+    "build:script": "vite build --config ./vite.config.script.ts",
+    "build:init": "ts-node-esm ./script/buildInit.ts",
+    "dev": "yarn build:init && concurrently -n popup,script \"yarn build:popup -w\" \"yarn build:script -w\"",
+    "dist": "yarn build:init && yarn build:popup && yarn build:script"
   },
+  "type": "module",
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.4",
     "@types/chrome": "^0.0.176",
-    "@types/mini-css-extract-plugin": "^2.4.0",
-    "@types/node": "^12.20.41",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^10.2.0",
-    "css-loader": "^6.5.1",
-    "css-minimizer-webpack-plugin": "^3.3.1",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.4.0",
+    "@types/node": "^16.11.7",
+    "concurrently": "^8.0.1",
     "prettier": "^2.5.1",
-    "terser-webpack-plugin": "^5.3.0",
-    "ts-loader": "^9.2.6",
-    "ts-node": "^10.4.0",
+    "svelte": "^3.58.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.5.4",
-    "webpack": "^5.65.0",
-    "webpack-cli": "^4.9.1",
-    "webpack-merge": "^5.8.0",
-    "webpack-sources": "^3.2.3",
-    "zip-webpack-plugin": "^4.0.1"
+    "vite": "^4.3.1",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

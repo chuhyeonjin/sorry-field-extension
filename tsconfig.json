@@ -3,11 +3,19 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "lib": ["ES6", "DOM", "DOM.Iterable"],
-    "target": "ES6",
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "target": "es6",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["svelte", "@types/chrome", "@types/node"],
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "noEmit": true,
   },
   "exclude": ["node_modules", "**/*.js"]
 }
